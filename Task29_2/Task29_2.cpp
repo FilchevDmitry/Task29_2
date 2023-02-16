@@ -5,20 +5,39 @@ class Shape
 protected:
 	struct BoundingBoxDimension
 	{
-		double width = 0;
-		double length = 0;
+		double width;
+		double length;
 	};
-		
-public:
+	std::string typeShape;
 	
+public:
 	
 	virtual double square() = 0;
 	virtual BoundingBoxDimension dimensions() = 0;
+	virtual std::string type() = 0;
+	void printParams(Shape* shape)
+	{
+		std::cout << "Type: " << shape->type() << std::endl;
 
+	}
 };
-class Circle : public Shape
+class Circle : virtual public Shape
 {
-
+private:
+	double radius;
+public:
+	Circle(double inRadius):radius(inRadius)
+	{
+		typeShape = "Circle";
+	}
+	virtual std::string type()
+	{
+		return typeShape;
+	}
+	virtual BoundingBoxDimension dimensions()
+	{
+		
+	}
 };
 class Rectangle :public Shape
 {
